@@ -1,25 +1,24 @@
 "use client";
 
 type Props = {
-  title: string
-  link: string
-  icon: React.ReactNode
-}
+  title: string;
+  link: string;
+};
 
 declare global {
   interface Window {
     umami?: {
-      track: (event: string) => void
-    }
+      track: (event: string) => void;
+    };
   }
 }
 
-export default function LinkCard({ title, link, icon }: Props) {
+export default function LinkCard({ title, link }: Props) {
   const handleClick = () => {
-    if (typeof window !== "undefined" && window.umami) {
-      window.umami.track(title)
+    if (window.umami) {
+      window.umami.track(title);
     }
-  }
+  };
 
   return (
     <a
@@ -27,9 +26,11 @@ export default function LinkCard({ title, link, icon }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="bg-neutral-900/80 backdrop-blur border border-neutral-800 hover:border-neutral-600 hover:shadow-lg hover:shadow-white/10 hover:scale-105 transition-all duration-200 p-4 rounded-xl flex items-center justify-center gap-3"    >
-      {icon}
-      <span>{title}</span>
+      className="group relative flex items-center justify-center rounded-xl border border-white/10 bg-white/5 backdrop-blur-md py-4 font-medium transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:scale-[1.04]"
+    >
+      <span className="relative z-10">{title}</span>
+
+      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 blur-xl"></div>
     </a>
-  )
+  );
 }
