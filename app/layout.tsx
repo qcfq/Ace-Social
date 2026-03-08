@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Ace Social",
@@ -14,16 +13,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {children}
-        {/* Umami script */}
-        <Script
-          strategy="afterInteractive"
+      <head>
+        <script
           async
           src="https://cloud.umami.is/script.js"
           data-website-id="92397e0e-8b6f-4887-a31b-805ae724402b"
-        />
-      </body>
+        ></script>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
