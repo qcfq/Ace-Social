@@ -4,6 +4,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Ace Social",
   description: "All my social links in one place",
+  openGraph: {
+    title: "Ace Social",
+    description: "All my links",
+    url: "https://ace-social-lemon.vercel.app",
+    siteName: "Ace Social",
+  },
 };
 
 export default function RootLayout({
